@@ -1,6 +1,8 @@
 package com.example.todoapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.todoapp.R;
@@ -15,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TodoDetailActivity extends AppCompatActivity {
     private TextView titleTextView;
     private TextView descriptionTextView;
+    private Button editButton;
     private ApiService apiService;
     private Long todoId;
 
@@ -25,6 +28,7 @@ public class TodoDetailActivity extends AppCompatActivity {
 
         titleTextView = findViewById(R.id.todo_title);
         descriptionTextView = findViewById(R.id.todo_description);
+        editButton = findViewById(R.id.edit_button);
 
         todoId = getIntent().getLongExtra("todoId", -1);
 
@@ -35,6 +39,12 @@ public class TodoDetailActivity extends AppCompatActivity {
         apiService = retrofit.create(ApiService.class);
 
         fetchTodoDetails(todoId);
+
+        editButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TodoDetailActivity.this, EditTodoActivity.class);
+            intent.putExtra("todoId", todoId);
+            startActivity(intent);
+        });
     }
 
     private void fetchTodoDetails(Long todoId) {
