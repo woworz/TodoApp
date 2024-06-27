@@ -1,46 +1,31 @@
 package com.example.todoapp.model;
 
-import java.util.Date;
-
 public class Todo {
     private Long id;
     private Long userId;
     private String title;
     private String description;
-    private Date dueDate;
     private Boolean completed;
-    // Getters and setters
 
-    public Boolean getCompleted() {
-        return completed;
+    // 默认构造函数
+    public Todo() {
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    // 带参数的构造函数
+    public Todo(String title, String description, Long userId) {
         this.title = title;
+        this.description = description;
+        this.userId = userId;
+        this.completed = false;
+    }
+
+    // Getter 和 Setter 方法
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getUserId() {
@@ -51,11 +36,27 @@ public class Todo {
         this.userId = userId;
     }
 
-    public Long getId() {
-        return id;
+    public String getTitle() {
+        return title;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 }

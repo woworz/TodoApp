@@ -1,22 +1,21 @@
 package com.example.todoapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import com.example.todoapp.R;
 import com.example.todoapp.adapter.TodoAdapter;
 import com.example.todoapp.model.Todo;
 import com.example.todoapp.service.ApiService;
-
 import java.util.List;
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private TodoAdapter todoAdapter;
     private ApiService apiService;
     private Long userId;
+    private Button addTodoButton;
+    private static final int REQUEST_CODE_ADD_TODO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        addTodoButton = findViewById(R.id.add_todo_button);
+        addTodoButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddTodoActivity.class);
+            intent.putExtra("userId", userId);
+            startActivityForResult(intent, REQUEST_CODE_ADD_TODO);
+        });
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.123.155:8080/TodoAppApi_war/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -45,14 +53,27 @@ public class MainActivity extends AppCompatActivity {
         fetchTodos();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_ADD_TODO && resultCode == RESULT_OK) {
+            fetchTodos();
+        }
+    }
+
     private void fetchTodos() {
         apiService.getTodosByUserId(userId).enqueue(new Callback<List<Todo>>() {
             @Override
             public void onResponse(Call<List<Todo>> call, Response<List<Todo>> response) {
                 if (response.isSuccessful()) {
                     List<Todo> todos = response.body();
-                    todoAdapter = new TodoAdapter(todos);
-                    recyclerView.setAdapter(todoAdapter);
+                    if (todoAdapter == null) {
+                        todoAdapter = new TodoAdapter(todos);
+                        recyclerView.setAdapter(todoAdapter);
+                    } else {
+                        todoAdapter.setTodos(todos);
+                        todoAdapter.notifyDataSetChanged();
+                    }
                 } else {
                     Toast.makeText(MainActivity.this, "Failed to load todos", Toast.LENGTH_SHORT).show();
                 }

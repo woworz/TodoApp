@@ -4,13 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.todoapp.R;
 import com.example.todoapp.model.Todo;
-
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
@@ -37,6 +34,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @Override
     public int getItemCount() {
         return todos.size();
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
+        notifyDataSetChanged();
     }
 
     class TodoViewHolder extends RecyclerView.ViewHolder {
