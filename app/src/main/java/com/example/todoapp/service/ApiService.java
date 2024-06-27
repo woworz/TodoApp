@@ -6,10 +6,7 @@ import com.example.todoapp.model.User;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.*;
 
 public interface ApiService {
     @POST("api/users/register")
@@ -26,4 +23,7 @@ public interface ApiService {
 
     @GET("api/todos/detail/{id}")
     Call<Todo> getTodoById(@Path("id") Long id);
+
+    @PUT("/api/todos/{id}")
+    Call<Todo> updateTodo(@Path("id") Long id, @Body Todo todo);
 }

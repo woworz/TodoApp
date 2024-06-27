@@ -9,6 +9,7 @@ public class Todo {
 
     // 默认构造函数
     public Todo() {
+        this.completed = false; // 默认设置为 false
     }
 
     // 带参数的构造函数

@@ -12,6 +12,8 @@ import com.example.todoapp.R;
 import com.example.todoapp.adapter.TodoAdapter;
 import com.example.todoapp.model.Todo;
 import com.example.todoapp.service.ApiService;
+
+import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         apiService = retrofit.create(ApiService.class);
 
+        todoAdapter = new TodoAdapter(new ArrayList<>(), this);
+        recyclerView.setAdapter(todoAdapter);
+
         fetchTodos();
     }
 
@@ -67,12 +72,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Todo>> call, Response<List<Todo>> response) {
                 if (response.isSuccessful()) {
                     List<Todo> todos = response.body();
-                    if (todoAdapter == null) {
-                        todoAdapter = new TodoAdapter(todos);
-                        recyclerView.setAdapter(todoAdapter);
-                    } else {
+                    if (todos != null) {
                         todoAdapter.setTodos(todos);
-                        todoAdapter.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Failed to load todos", Toast.LENGTH_SHORT).show();

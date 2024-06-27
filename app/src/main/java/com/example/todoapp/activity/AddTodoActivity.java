@@ -46,6 +46,7 @@ public class AddTodoActivity extends AppCompatActivity {
             todo.setUserId(userId);
             todo.setTitle(title);
             todo.setDescription(description);
+            todo.setCompleted(false);  // 设置 completed 字段为 false
 
             addTodoItem(todo);
         });
