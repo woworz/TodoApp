@@ -66,9 +66,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         return todos.size();
     }
 
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
     public void setTodos(List<Todo> todos) {
         this.todos = todos;
         notifyDataSetChanged();
+    }
+
+    public void removeTodoAt(int position) {
+        todos.remove(position);
+        notifyItemRemoved(position);
     }
 
     private void updateTodoCompletedStatus(Todo todo) {

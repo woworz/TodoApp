@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:padding="14dp"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/rounded_corners">
 
     <CheckBox
         android:id="@+id/todo_completed"

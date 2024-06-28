@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyTodoApp</string>
-    <string name="login">Login</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="add_todo">Add Todo</string>
-    <string name="title">Title</string>
+    <string name="app_name">一个Todo</string>
+    <string name="login">登录</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="add_todo">添加Todo</string>
+    <string name="title">标题</string>
     <string name="description">Description</string>
-    <string name="add">Add</string>
+    <string name="add">添加</string>
 </resources>

@@ -26,4 +26,7 @@ public interface ApiService {
 
     @PUT("/api/todos/{id}")
     Call<Todo> updateTodo(@Path("id") Long id, @Body Todo todo);
+
+    @DELETE("/TodoAppApi_war/api/todos/{id}")
+    Call<Void> deleteTodo(@Path("id") Long id);
 }

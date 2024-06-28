@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.todoapp.R;
@@ -56,6 +57,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(todoAdapter);
 
         fetchTodos();
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                Todo todo = todoAdapter.getTodos().get(position);
+                deleteTodoItem(todo, position);
+            }
+        });
+
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -83,6 +100,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Todo>> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deleteTodoItem(Todo todo, int position) {
+        apiService.deleteTodo(todo.getId()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    todoAdapter.removeTodoAt(position);
+                    Toast.makeText(MainActivity.this, "Todo deleted successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Failed to delete todo", Toast.LENGTH_SHORT).show();
+                    todoAdapter.notifyItemChanged(position);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                todoAdapter.notifyItemChanged(position);
             }
         });
     }
