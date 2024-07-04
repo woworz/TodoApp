@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.todoapp.R;
 import com.example.todoapp.model.User;
 import com.example.todoapp.service.ApiService;
+import com.example.todoapp.service.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,11 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.register_button);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.123.155:8080/TodoAppApi_war/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        apiService = retrofit.create(ApiService.class);
+        apiService = RetrofitClient.getApiService();
 
         // 从 SharedPreferences 中读取并填充用户名和密码
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

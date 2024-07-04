@@ -24,9 +24,12 @@ public interface ApiService {
     @GET("api/todos/detail/{id}")
     Call<Todo> getTodoById(@Path("id") Long id);
 
-    @PUT("/api/todos/{id}")
+    @PUT("api/todos/{id}")
     Call<Todo> updateTodo(@Path("id") Long id, @Body Todo todo);
 
     @DELETE("/TodoAppApi_war/api/todos/{id}")
     Call<Void> deleteTodo(@Path("id") Long id);
+
+    @POST("api/users/{id}/changePassword")
+    Call<Void> changePassword(@Path("id") Long id, @Body User user);
 }

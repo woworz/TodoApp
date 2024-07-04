@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.todoapp.R;
 import com.example.todoapp.model.Todo;
 import com.example.todoapp.service.ApiService;
+import com.example.todoapp.service.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,11 +34,7 @@ public class TodoDetailActivity extends AppCompatActivity {
 
         todoId = getIntent().getLongExtra("todoId", -1);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.123.155:8080/TodoAppApi_war/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        apiService = retrofit.create(ApiService.class);
+        apiService = RetrofitClient.getApiService();
 
         fetchTodoDetails(todoId);
 

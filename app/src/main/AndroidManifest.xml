@@ -27,6 +27,7 @@
         <activity android:name=".activity.TodoDetailActivity"/>
         <activity android:name=".activity.EditTodoActivity" />
         <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.UserManagementActivity"/>
     </application>
 
 </manifest>

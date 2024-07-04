@@ -11,4 +11,10 @@
     <string name="add">添加</string>
     <string name="edit">编辑</string>
     <string name="save">保存</string>
+    <string name="userManagement">用户管理</string>
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+    <string name="cPassword">旧密码</string>
+    <string name="nPassword">新密码</string>
+    <string name="cnPassword">重新输入密码</string>
 </resources>
