@@ -2,10 +2,13 @@
 <resources>
     <string name="app_name">一个Todo</string>
     <string name="login">登录</string>
+    <string name="register">注册</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="add_todo">添加Todo</string>
     <string name="title">标题</string>
-    <string name="description">Description</string>
+    <string name="description">描述</string>
     <string name="add">添加</string>
+    <string name="edit">编辑</string>
+    <string name="save">保存</string>
 </resources>

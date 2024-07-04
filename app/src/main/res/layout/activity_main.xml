@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@color/itemBackColor" >
+    android:padding="16dp" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -16,6 +15,6 @@
         android:id="@+id/add_todo_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Todo"/>
+        android:text="@string/add_todo"/>
 
 </LinearLayout>
