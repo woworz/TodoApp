@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     todoAdapter.removeTodoAt(position);
-                    Toast.makeText(MainActivity.this, "Todo deleted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "成功删除待办事项", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Failed to delete todo", Toast.LENGTH_SHORT).show();
                     todoAdapter.notifyItemChanged(position);

@@ -64,7 +64,7 @@ public class UserManagementActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(UserManagementActivity.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserManagementActivity.this, "修改密码成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Toast.makeText(UserManagementActivity.this, "Failed to change password", Toast.LENGTH_SHORT).show();

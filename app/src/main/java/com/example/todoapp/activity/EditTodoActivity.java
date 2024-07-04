@@ -76,10 +76,10 @@ public class EditTodoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Todo> call, Response<Todo> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(EditTodoActivity.this, "Todo updated successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditTodoActivity.this, "更新待办事项成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(EditTodoActivity.this, "Failed to update todo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditTodoActivity.this, "更新待办事项失败", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -17,4 +17,5 @@
     <string name="cPassword">旧密码</string>
     <string name="nPassword">新密码</string>
     <string name="cnPassword">重新输入密码</string>
+    <string name="changePassword">修改密码</string>
 </resources>
